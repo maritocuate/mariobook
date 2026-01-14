@@ -1,5 +1,7 @@
 import clsx from "clsx"
 import useMariobookStore from "../store"
+import { Box, OrbitControls } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
 
 function Product() {
     const { color, scale, setColor, setScale } = useMariobookStore()
@@ -24,15 +26,26 @@ function Product() {
                     </div>
 
                     <div className="size-control">
-                        <div>
+                        <div
+                            onClick={() => setScale(0.06)}
+                            className={clsx(scale === 0.06 ? 'bg-white text-black' : 'bg-transparent text-white')}
+                        >
                             <p>14"</p>
                         </div>
-                        <div>
+                        <div
+                            onClick={() => setScale(0.08)}
+                            className={clsx(scale === 0.08 ? 'bg-white text-black' : 'bg-transparent text-white')}
+                        >
                             <p>16"</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <Canvas id="canvas" camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100}}>
+                <Box position={[0, 0, 0]} scale={10 * scale} material-color={color} />
+                <OrbitControls enableZoom={false} />
+            </Canvas>
         </section>
     )
 }
