@@ -1,13 +1,15 @@
 import clsx from "clsx"
 import useMariobookStore from "../store"
-import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 
-import Macbook14 from './models/Macbook14'
 import Lights from "./three/Lights"
+import ModelSwitcher from "./three/ModelSwitcher"
+import { useMediaQuery } from "react-responsive"
 
 function Product() {
     const { color, scale, setColor, setScale } = useMariobookStore()
+
+    const isMobile = useMediaQuery({ query: '(max-width: 1024px)'})
 
     return (
         <section id="product-viewer">
@@ -47,8 +49,7 @@ function Product() {
 
             <Canvas id="canvas" camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100}}>
                 <Lights />
-                <Macbook14 scale={0.06} position={[-1, 0, 0]} />
-                <OrbitControls enableZoom={false} />
+                <ModelSwitcher scale={isMobile ? scale - 0.03 : scale} isMobile={true} />
             </Canvas>
         </section>
     )
