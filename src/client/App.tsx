@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Product from './components/Product'
+import Showcase from './components/Showcase'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <Hero />
       <Product />
+      <Showcase />
     </main>
   )
 }
