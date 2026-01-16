@@ -5,7 +5,7 @@ import MacbookModel16 from "../models/Macbook16.jsx";
 import MacbookModel14 from "../models/Macbook14.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react"
-import { Group } from "three";
+import { Group, Mesh, Object3D } from "three";
 
 type Props = {
     scale: number,
@@ -15,11 +15,11 @@ type Props = {
 const ANIMATION_DURATION = 0.5;
 const OFFSET_DISTANCE = 2;
 
-const fadeMeshes = (group: Group, opacity: number) => {
+const fadeMeshes = (group: Group | null, opacity: number) => {
     if(!group) return;
 
-    group.traverse((child) => {
-        if(child.isMesh) {
+    group.traverse((child: Object3D) => {
+        if(child instanceof Mesh) {
             child.material.transparent = true;
             gsap.to(child.material, { opacity, duration: ANIMATION_DURATION })
         }
