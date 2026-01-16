@@ -4,7 +4,7 @@ import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 
 import Macbook14 from './models/Macbook14'
-import Lights from "./tree/Lights"
+import Lights from "./three/Lights"
 
 function Product() {
     const { color, scale, setColor, setScale } = useMariobookStore()
